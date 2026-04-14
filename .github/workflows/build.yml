@@ -16,7 +16,7 @@ jobs:
     - name: Build .exe
       run: pyinstaller --onefile --windowed --name "MeterCollector" windows-meter-collector.py
     - name: Upload artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: MeterCollector-exe
         path: dist/MeterCollector.exe
