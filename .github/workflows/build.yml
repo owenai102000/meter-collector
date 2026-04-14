@@ -1,0 +1,22 @@
+name: Build Windows .exe
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install dependencies
+      run: pip install pyinstaller requests
+    - name: Build .exe
+      run: pyinstaller --onefile --windowed --name "MeterCollector" windows-meter-collector.py
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: MeterCollector-exe
+        path: dist/MeterCollector.exe
